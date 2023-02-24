@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 3,
+      "text": "Broski Birthday",
+      "day": "Jan 13th at 1:30pm",
+      "reminder": true
+    },
+    {
+      "text": "Lollapalooza",
+      "day": "Jan 28th at 11:30pm",
+      "reminder": false,
+      "id": 4
+    },
+    {
+      "text": "Hi Bro",
+      "day": "2023-01-12T12:42:53.674Z",
+      "reminder": false,
+      "id": 5
+    }
+  ]
+}
