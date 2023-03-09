@@ -1,38 +1,48 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import DatePicker from "react-datepicker";  
   
 import "react-datepicker/dist/react-datepicker.css";  
 
 const AddTask = ({ onAdd }) => {
 
+    const inputRef = useRef(null);
     const [day, setDay] = useState(new Date());
+    const [lines, setLines] = useState([]);
+
+ const clearRef = () => {
+    inputRef.current.value = '';
+    setLines([]);
+ }
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        setLines(event.target.result.split('\n'))
+        console.log(lines);
+    };
+
+    reader.readAsText(file);
+  }
 
     const onSubmit = (e) => {
         //to prevent submitting to another page
         e.preventDefault();
 
-        onAdd(day);
+        onAdd(day, lines);
 
         // setText('');
         // setDay('');
         // setReminder(false);
     }
-
   return (
     <form action="" className="add-form" onSubmit={onSubmit}>
-        {/* <div className="form-control">
-            <label>Task</label>
-            <input type="text" placeholder="Add Task" 
-            value={text} onChange={(e) => {
-                setText(e.target.value);
-                setError('');
-            }} />
-            <p style={{color: 'red'}}>{error}</p>
-        </div> */}
-        <div className="form-control">
+        <div className="row">
+        <div className="form-control col">
             <label>Month & Year</label>
-            {/* <DatePicker selected={day} onChange={(date) => setDay(date)} />   */}
             <DatePicker
+                className=""
                 hintText="Choose Date"
                 container="inline"
                 inputStyle={{ textAlign: 'center' }}
@@ -45,12 +55,15 @@ const AddTask = ({ onAdd }) => {
                 showMonthYearPicker
                 />
         </div>
-        {/* <div className="form-control form-control-check" style={{justifyContent:"flex"}}>
-            <label>Set Reminder</label>
-            <input type="checkbox" 
-            checked={reminder}
-            value={reminder} onChange={(e) => setReminder(e.currentTarget.checked)}/>
-        </div> */}
+        <div className="form-control col" style={{justifyContent:"flex"}}>
+            <label>Upload File</label>
+            <div className="row">
+            <input className="col" type="file" accept="text/csv" onChange={handleFileInputChange} ref={inputRef}/>
+            {lines.length>0 && <div className="col-3 clear p-0"><a className="btn p-1" onClick={clearRef}>Clear File</a></div>}
+            </div>
+        </div>
+        </div>
+        
 
         <input className="btn btn-block" type="submit" value="Search" />
     </form>

@@ -9,6 +9,15 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+@media (max-width: 768px) {
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  /* flex: none; */
+  display: block;
+}
+}
 
 .logo {
   width: 100px;
@@ -52,6 +61,12 @@ body {
   outline: none;
 }
 
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-color);
+  border: 1px solid black;
+}
+
 .btn:active {
   transform: scale(0.98);
 }
@@ -65,7 +80,6 @@ body {
   background: #f4f4f4;
   margin: 5px;
   padding: 10px 20px;
-  cursor: pointer;
 }
 
 .task.head {
@@ -120,6 +134,10 @@ body {
 .form-control-check input {
   flex: 2;
   height: 20px;
+}
+
+.clear {
+  margin-top: 3px;
 }
 
 footer {

@@ -38,62 +38,43 @@ function App() {
     return data;
   }
 
-  const addTask = (date) => {
+  const addTask = (date, lines) => {
 
     const month = date.getMonth() + 1;
     const year = date.getFullYear().toString().substring(2,4);
+    console.log(year);
+    const payload = lines;
 
-    axios.get(`http://localhost:8282/csv/readcsv/${month}/${year}`)
+    if(lines.length === 0)
+    {
+      axios.get(`http://localhost:8181/csv/readcsv/${month}/${year}`)
+      .then((res) => {
+        setTasks(res.data)
+        console.log(res.data);
+        //console.log(tasks);
+      })
+      .catch(err =>{
+          setTasks(['error'])
+          console.log(err)
+        })
+    }
+    else {
+    axios.post(`http://localhost:8181/csv/upload-csv-file/${month}/${year}`, payload, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then((res) => {
       setTasks(res.data)
-      console.log(tasks);
+      console.log(res.data);
+      //console.log(tasks);
     })
     .catch(err =>{
         setTasks(['error'])
-       console.log(err)})
-
-    // const res = await fetch('http://localhost:5000/tasks', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(task)
-    // })
-
-    // const data = await res.json();
-    // setTasks([...tasks, data]);
-
-    //const id = Math.floor(Math.random() * 9999);
-    //const newTask = {id, ...task};
-    //setTasks([...tasks, newTask]);
+        console.log(err)})
+    }
   }
 
-  // const deleteTask = async (id) => {
-  //   await fetch(`http://localhost:5000/tasks/${id}`, {
-  //     method: 'DELETE'
-  //   });
-
-  //   setTasks(tasks.filter((task) => task.id!==id));
-  // }
-
-  // const toggleReminder = async (id) => {
-
-  //   const taskToToggle = await fetchTask(id);
-  //   const updatedTask = {...taskToToggle, reminder: !taskToToggle.reminder}
-
-  //   const res = await fetch(`http://localhost:5000/tasks/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(updatedTask)
-  //   })
-
-  //   const data = await res.json();
-
-  //   setTasks(tasks.map((task) => task.id === id ? {...task, reminder: data.reminder} : task
-  //   ))
-  // }
 
   return (
     <Router>
