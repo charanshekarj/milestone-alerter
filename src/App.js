@@ -12,31 +12,11 @@ import axios from "axios";
 
 function App() {
 
-  const [showAddTask, setShowAddTask] = useState(false);
+  const [showAddTask, setShowAddTask] = useState(true);
 
   const [tasks, setTasks] = useState([]);
+  const [dMonth, setDMonth] = useState(`${new Date().getMonth()}-${new Date().getFullYear()}`);
 
-  useEffect(() => {
-    // fetchTasks();
-  }, [])
-
-  // const fetchTasks = () => {
-  //   let data;
-  //   axios.get('http://localhost:8282/csv/readcsv/01/23')
-  //   .then((res) => {
-  //     setTasks(res.data)
-  //   })
-  //   .catch(err => console.log(err))
-
-  //   return data;
-  // }
-
-  const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`)
-    const data = await res.json()
-
-    return data;
-  }
 
   const addTask = (date, lines) => {
 
@@ -45,6 +25,7 @@ function App() {
     console.log(year);
     const payload = lines;
 
+    setDMonth(`${month}-${year}`);
     if(lines.length === 0)
     {
       axios.get(`http://localhost:8181/csv/readcsv/${month}/${year}`)
@@ -66,8 +47,6 @@ function App() {
     })
     .then((res) => {
       setTasks(res.data)
-      console.log(res.data);
-      //console.log(tasks);
     })
     .catch(err =>{
         setTasks(['error'])
@@ -86,7 +65,7 @@ function App() {
               {showAddTask && <AddTask onAdd={addTask}/>}
           
               {tasks.length > 0 ? 
-              <Tasks tasks={tasks}/> 
+              <Tasks tasks={tasks} date={dMonth}/> 
               : ''}
             </>
           }

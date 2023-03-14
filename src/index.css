@@ -9,14 +9,18 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
-@media (max-width: 768px) {
-.table-responsive {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
-  /* flex: none; */
+
+.hide {
+  display: none;
+}
+@media (max-width: 640px) {
+.hide {
   display: block;
 }
+}
+
+.table-responsive .row {
+  display: none;
 }
 
 .logo {

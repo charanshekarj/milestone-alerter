@@ -1,3 +1,5 @@
+import { Tbody, Tr, Td } from 'react-super-responsive-table'
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const Task = ({ task }) => {
 
@@ -17,18 +19,16 @@ const Task = ({ task }) => {
 
 
   return (
-    // <div className={`task ${task.reminder ? 'reminder' : ''}`} onDoubleClick={() => onToggle(task.id)}>
-    //     <h3>{task.text}  <FaTimes onClick={() => onDelete(task.id)} style={{color:'red', cursor:'pointer'}}/> </h3>
-    //     <p>{task.day}</p>
-    // </div>
 
-    <tr className="d-flex justify-content-center">
-        <td className="col-md-1 task"><h6>{resultArray[0]}</h6></td>
-        <td className="col-md-2 task"><h6>{resultArray[1]}</h6></td>
-        <td className="col-md-2 task"><h6>{resultArray[2]}</h6></td>
-        <td className="col-md-4 task"><h6>{resultArray[3]}</h6></td>
-        <td className="col-md-2 task"><h6>{resultArray[4]}</h6></td>
-      </tr>
+    <Tbody>
+      <Tr className="justify-content-center">
+        <Td className=" task"><h6>{resultArray[0]}</h6></Td>
+        <Td className=" task"><h6>{resultArray[1]}</h6></Td>
+        <Td className=" task"><h6>{resultArray[2]}</h6></Td>
+        <Td className=" task"><h6>{resultArray[3]}</h6></Td>
+        <Td className=" task"><h6>{resultArray[4]}</h6></Td>
+      </Tr>
+    </Tbody>
 
 
     // <div className='task reminder' >
