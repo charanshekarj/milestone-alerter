@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 import Task from "./Task"
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import { Table, Thead, Tr, Th } from 'react-super-responsive-table'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const Tasks = ({ tasks, date }) => {
