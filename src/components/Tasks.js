@@ -53,9 +53,9 @@ const Tasks = ({ tasks, date }) => {
     <>
     
     <Table className="" ref={targetRef} id="table">
-    {tasks[0]=='error' ? '' : <div className="task head hide">Results</div>}
+    {tasks[0]==='error' ? '' : <div className="task head hide">Results</div>}
       
-    {tasks[0]=='error' ? (<h2>No Records found</h2>) :
+    {tasks[0]==='error' ? (<h2>No Records found</h2>) :
     <Thead>
       
       <Tr className="justify-content-center">
@@ -66,11 +66,11 @@ const Tasks = ({ tasks, date }) => {
         <Th className=" task head"><h5>Due Date</h5></Th>
       </Tr>
     </Thead>}
-         {tasks[0]=='error' ? '' : tasks.map(
-            (task, i) => ( <Task key={i} task={task.replace(/[\[\]]/g, '')}></Task> ) 
+         {tasks[0]==='error' ? '' : tasks.map(
+            (task, i) => ( <Task key={i} task={task.replace(/[[\]]/g, '')}></Task> ) 
         )}
     </Table>
-    {tasks[0]=='error' ? '' : <div className="d-flex justify-content-between"><div></div><button className='btn ml-auto' onClick={generatePDF}>Download PDF</button></div>}
+    {tasks[0]==='error' ? '' : <div className="d-flex justify-content-between"><div></div><button className='btn ml-auto' onClick={generatePDF}>Download PDF</button></div>}
     </>
   )
 }

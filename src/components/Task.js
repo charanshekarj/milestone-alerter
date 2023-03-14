@@ -3,10 +3,10 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const Task = ({ task }) => {
 
-  const splitString = (string) => {
-    const parts = string.match(/("[^"]*")|[^,]+/g);
-    return parts.map(part => part.replace(/^"/, '').replace(/"$/, '').trim());
-  }
+  // const splitString = (string) => {
+  //   const parts = string.match(/("[^"]*")|[^,]+/g);
+  //   return parts.map(part => part.replace(/^"/, '').replace(/"$/, '').trim());
+  // }
   const regex = /(?:[^,]*,){3}((?:[^,]*,)*[^,]*)/;
   const resultArray = task.split(',');
   let milestone = ''
