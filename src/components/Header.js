@@ -19,7 +19,7 @@ const Header = ({title, onAddTask, showAdd}) => {
 
   return (
     <header className='header'>
-        <img className='logo' src="./calfus-logo-trans.png"/>
+        <img className='logo' src="./calfus-logo-trans.png" alt='Calfus'/>
         <h1>{title}</h1>
         {location.pathname==='/' && <button style={{backgroundColor: showAdd ? 'red' : 'green'}} className="btn" 
         onClick={onBtnClick}>{showAdd ? 'Close' : 'Search'}</button>}

@@ -59,7 +59,7 @@ const AddTask = ({ onAdd }) => {
             <label>Upload File</label>
             <div className="row">
             <input className="col" type="file" accept="text/csv" onChange={handleFileInputChange} ref={inputRef}/>
-            {lines.length>0 && <div className="col-3 clear p-0"><a className="btn p-1" onClick={clearRef}>Clear File</a></div>}
+            {lines.length>0 && <div className="col-3 clear p-0"><button className="btn p-1" onClick={clearRef}>Clear File</button></div>}
             </div>
         </div>
         </div>
