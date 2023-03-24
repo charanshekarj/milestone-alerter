@@ -67,7 +67,7 @@ const Tasks = ({ tasks, date }) => {
       </Tr>
     </Thead>}
          {tasks[0]==='error' ? '' : tasks.map(
-            (task, i) => ( <Task key={i} task={task.replace(/[[\]]/g, '')}></Task> ) 
+            (task, i) => ( <Task key={i} task={Object.values(task)}></Task> ) 
         )}
     </Table>
     {tasks[0]==='error' ? '' : <div className="d-flex justify-content-between"><div></div><button className='btn ml-auto' onClick={generatePDF}>Download PDF</button></div>}

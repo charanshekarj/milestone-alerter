@@ -7,26 +7,26 @@ const Task = ({ task }) => {
   //   const parts = string.match(/("[^"]*")|[^,]+/g);
   //   return parts.map(part => part.replace(/^"/, '').replace(/"$/, '').trim());
   // }
-  const regex = /(?:[^,]*,){3}((?:[^,]*,)*[^,]*)/;
-  const resultArray = task.split(',');
-  let milestone = ''
-  if(resultArray.length > 5){
-    milestone = task.split(regex);
+  // const regex = /(?:[^,]*,){3}((?:[^,]*,)*[^,]*)/;
+  // const resultArray = task.split(',');
+  // let milestone = ''
+  // if(resultArray.length > 5){
+  //   milestone = task.split(regex);
 
-    resultArray[4] = resultArray[resultArray.length-1];
-    resultArray[3] = milestone;
-  }
+  //   resultArray[4] = resultArray[resultArray.length-1];
+  //   resultArray[3] = milestone;
+  // }
 
-
+console.log(task)
   return (
 
     <Tbody>
       <Tr className="justify-content-center">
-        <Td className=" task"><h6>{resultArray[0]}</h6></Td>
-        <Td className=" task"><h6>{resultArray[1]}</h6></Td>
-        <Td className=" task"><h6>{resultArray[2]}</h6></Td>
-        <Td className=" task"><h6>{resultArray[3]}</h6></Td>
-        <Td className=" task"><h6>{resultArray[4]}</h6></Td>
+        <Td className=" task"><h6>{task[0]}</h6></Td>
+        <Td className=" task"><h6>{task[1]}</h6></Td>
+        <Td className=" task"><h6>{task[2]}</h6></Td>
+        <Td className=" task"><h6>{task[3]}</h6></Td>
+        <Td className=" task"><h6>{task[4]}</h6></Td>
       </Tr>
     </Tbody>
 

@@ -20,19 +20,18 @@ function App() {
 
   const addTask = (date, lines) => {
 
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear().toString().substring(2,4);
-    console.log(year);
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear().toString().substring(2,4);
     const payload = lines;
+    let queryString = ''
+    month<10 ? queryString=`?month=0${month}&year=${year}` : queryString=`?month=${month}&year=${year}`;
 
     setDMonth(`${month}-${year}`);
     if(lines.length === 0)
     {
-      axios.get(`http://localhost:8181/csv/readcsv/${month}/${year}`)
+      axios.get(`http://localhost:3000/fetch-csv${queryString}`)
       .then((res) => {
-        setTasks(res.data)
-        console.log(res.data);
-        //console.log(tasks);
+        setTasks(res.data);
       })
       .catch(err =>{
           setTasks(['error'])
@@ -40,13 +39,16 @@ function App() {
         })
     }
     else {
-    axios.post(`http://localhost:8181/csv/upload-csv-file/${month}/${year}`, payload, {
+    axios.post(`http://localhost:3000/upload-csv-file/${queryString}`, payload, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then((res) => {
-      setTasks(res.data)
+      if(res.data.length===0) 
+        setTasks(['error']);
+      else
+        setTasks(res.data);
     })
     .catch(err =>{
         setTasks(['error'])
